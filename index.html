@@ -4,72 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>losmulu - Zidan Maulana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e40af);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a0033, #2a1b4a, #0f4c5c);
+            background-size: 300% 300%;
             color: white;
             min-height: 100vh;
             text-align: center;
             padding: 40px 20px;
+            animation: premiumGradient 28s ease infinite;
         }
-        .profile {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 5px solid white;
-            margin: 20px auto;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        @keyframes premiumGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        h1 { font-size: 2.4rem; margin-bottom: 8px; }
-        .name { font-size: 1.7rem; margin-bottom: 30px; opacity: 0.95; }
-        .desc { font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px; line-height: 1.6; }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1.1s forwards;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile { 
+            width: 170px; 
+            height: 170px; 
+            border-radius: 50%; 
+            border: 6px solid rgba(255,255,255,0.9); 
+            margin: 25px auto; 
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.5); 
+            transition: all 0.7s; 
+        }
+
+        h1 { font-size: 2.7rem; margin-bottom: 10px; color: #c026d3; }
+        .name { font-size: 1.8rem; margin-bottom: 25px; opacity: 0.95; }
+        .desc { font-size: 1.2rem; max-width: 680px; margin: 0 auto 40px; line-height: 1.6; }
+
+        .chart-container, .market {
+            margin: 40px auto;
+            max-width: 100%;
+            padding: 18px;
+            border-radius: 24px;
+        }
+        .chart-container iframe { width: 100%; height: 340px; border-radius: 18px; }
+
         .btn {
-            background: white;
-            color: #1e40af;
-            padding: 15px 32px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
             display: inline-block;
             margin: 10px 8px;
-            font-size: 1.1rem;
+            font-size: 1.08rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s;
+            cursor: pointer;
         }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-4px);
+        }
+
         #about-text {
             display: none;
-            margin: 30px auto;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            max-width: 600px;
-            line-height: 1.6;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            opacity: 0;
+            padding: 35px 30px;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 28px;
+            max-width: 620px;
+            width: 90%;
+            line-height: 1.8;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 1000;
+        }
+        #about-text.show {
+            display: block;
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <img src="JPEG image.jpeg" alt="Zidan Maulana" class="profile">
 
-    <h1>Welcome losmulu</h1>
-    <p class="name">Zidan Maulana</p>
-    <p class="desc">
+    <h1 class="fade-in">Welcome losmulu</h1>
+    <p class="name fade-in" style="animation-delay: 0.3s;">Zidan Maulana</p>
+    <p class="desc fade-in" style="animation-delay: 0.6s;">
         Trade crypto with consistency.<br>
         One trade at a time.
     </p>
 
-    <a href="#" onclick="showAbout()" class="btn">Tentang Saya</a>
-    <a href="https://www.bybitglobal.com/invite?ref=NPKBKG6&medium=referral&utm_campaign=evergreen" target="_blank" class="btn">Bybit</a>
-    <a href="https://wa.me/6282195700959" target="_blank" class="btn">Kontak</a>
+    <div class="chart-container glass fade-in" style="animation-delay: 0.8s;">
+        <h2 style="margin-bottom: 15px; color: #e0e7ff;">📈 Bitcoin Real-Time Chart</h2>
+        <iframe src="https://www.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=5&theme=dark&style=1&hide_top_toolbar=false" frameborder="0"></iframe>
+    </div>
+
+    <div class="market glass fade-in" style="animation-delay: 1s;">
+        <h2 style="margin-bottom: 20px; color: #e0e7ff;">📊 Market Crypto</h2>
+        <div id="crypto-market"></div>
+    </div>
+
+    <!-- Tombol yang sudah diperbaiki -->
+    <button onclick="toggleAbout()" class="btn fade-in glass" style="animation-delay: 1.2s;">Tentang Saya</button>
+    <a href="https://www.bybitglobal.com/invite?ref=NPKBKG6&medium=referral&utm_campaign=evergreen" target="_blank" class="btn fade-in glass" style="animation-delay: 1.2s;">Bybit</a>
+    <a href="https://wa.me/6282195700959" target="_blank" class="btn fade-in glass" style="animation-delay: 1.2s;">WhatsApp</a>
 
     <div id="about-text">
         Crypto enthusiast yang sedang membangun konsistensi dalam trading, belajar teknologi, dan mengejar target jangka panjang. 🚀
     </div>
 
     <script>
-        function showAbout() {
-            const text = document.getElementById('about-text');
-            text.style.display = (text.style.display === 'block') ? 'none' : 'block';
+        function toggleAbout() {
+            const about = document.getElementById('about-text');
+            about.classList.toggle('show');
         }
+
+        async function fetchCryptoPrices() {
+            try {
+                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
+                const data = await res.json();
+                let html = '';
+                const coins = { bitcoin: 'Bitcoin', ethereum: 'Ethereum', solana: 'Solana' };
+                for (let id in coins) {
+                    const coin = data[id];
+                    if (coin) {
+                        const change = coin.usd_24h_change ? coin.usd_24h_change.toFixed(2) : 0;
+                        const color = change >= 0 ? '#22c55e' : '#ef4444';
+                        html += `<div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <span>${coins[id]}</span>
+                            <span style="font-weight:bold">$${coin.usd.toLocaleString()}</span>
+                            <span style="color:${color}">${change >= 0 ? '↑' : '↓'} ${Math.abs(change)}%</span>
+                        </div>`;
+                    }
+                }
+                document.getElementById('crypto-market').innerHTML = html;
+            } catch(e) {}
+        }
+
+        fetchCryptoPrices();
+        setInterval(fetchCryptoPrices, 30000);
     </script>
 </body>
 </html>
